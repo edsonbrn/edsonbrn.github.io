@@ -8,7 +8,6 @@ class SnakeLength {
     }
 }
 
-
 let speed = 8;
 let tileCount= 20
 let tileSize = canvas.width / tileCount - 2
@@ -16,18 +15,13 @@ let headX = 10;
 let headY = 10;
 const snakeLength = [];
 let tailLength = 2;
-
 let appleX = 5;
 let appleY = 5;
-
 let xVelocity = 0;
 let yVelocity = 0;
-
 let score = 0;
 
 const snakeGame = () => {
-
-
     snakePosition();
     let result = isGameOver();
     if(result){
@@ -51,14 +45,10 @@ const snakeGame = () => {
 
 const isGameOver = () => {
     let gameOver = false;
-
     if(xVelocity === 0 && yVelocity === 0){
         gameOver = false;
         return
     }
-
-
-
     if(headX < 0){
         gameOver = true
     }
@@ -71,7 +61,6 @@ const isGameOver = () => {
     else if (headY === tileCount){
         gameOver = true;
     }
-    
     for(let i = 0; i < snakeLength.length; i++){
         let part = snakeLength[i];
         if(part.x === headX && part.y === headY){
@@ -79,18 +68,13 @@ const isGameOver = () => {
             break
         }
     }
-
-
-
     if(gameOver){
         ctx.fillStyle = "white";
         ctx.font = "50px Arial";
         ctx.fillText("Game Over!", canvas.width/6.5, canvas.height/2)
     }
-
     return gameOver;
 }
-
 
 const drawScore = () => {
     ctx.fillStyle = "white"; 
@@ -116,11 +100,6 @@ const drawSnake = () => {
     while(snakeLength.length > tailLength){
         snakeLength.shift();
     }
-
-
-
-
-
     ctx.fillStyle = "#ff6a00"
     ctx.fillRect(headX * tileCount, headY * tileCount, tileSize,
     tileSize)
@@ -141,13 +120,10 @@ const checkAppleCollision = () => {
     }
 }
 
-
 const snakePosition = () => {
     headX = headX + xVelocity;
     headY = headY + yVelocity;
 }
-
-
 
 document.body.addEventListener("keydown", keyDown = (event) => {
     if(event.code == "ArrowUp") {
@@ -179,6 +155,5 @@ document.body.addEventListener("keydown", keyDown = (event) => {
         xVelocity = 1;
     }
 }) 
-
 
 snakeGame();
